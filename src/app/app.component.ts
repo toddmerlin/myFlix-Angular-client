@@ -16,12 +16,16 @@ export class AppComponent {
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, {
       width: '280px',
+      height: 'auto',
+      panelClass: 'center-dialog-container',
     });
   }
 
   openUserLoginDialog(): void {
-    this.dialog.open(UserRegistrationFormComponent, {
+    this.dialog.open(UserLoginFormComponent, {
       width: '280px',
+      height: 'auto',
+      panelClass: 'center-dialog-container',
     });
   }
 }
