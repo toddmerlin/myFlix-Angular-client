@@ -1,0 +1,49 @@
+.body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #ed82b7;
+  height: 95vh; /* Set the height to fill the viewport */
+}
+
+.movie-card {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 10px;
+  margin-right: 20px;
+  min-width: 250px;
+  max-width: 300px;
+  min-height: 250px;
+  max-height: 500px;
+  justify-self: center;
+  justify-content: center;
+  padding: 5px;
+  object-fit: contain;
+  overflow: hidden; /* Prevent content from overflowing */
+}
+
+.movie-card img {
+  width: 100%; /* Ensure image fills the width of its container */
+  height: auto; /* Automatically adjust height to maintain aspect ratio */
+  max-height: 300px; /* Set maximum height */
+  min-width: 100px; /* Set minimum width */
+  min-height: 150px; /* Set minimum height */
+  object-fit: contain; /* Ensure image covers the container without stretching */
+  overflow: hidden; /* Prevent content from overflowing */
+}
+
+.mat-mdc-card-header {
+  padding: auto !important;
+  font-size: medium;
+  justify-content: center !important;
+  align-items: center !important;
+  color: rgb(58, 58, 187);
+  white-space: wrap;
+}
+
+.mat-mdc-card-actions {
+  padding: auto;
+  display: block;
+  font-size: 10px;
+  color: rgb(58, 58, 187);
+  white-space: wrap;
+}

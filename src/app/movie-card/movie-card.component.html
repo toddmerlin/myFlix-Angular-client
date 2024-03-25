@@ -1,0 +1,26 @@
+<div style="display: flex; flex-wrap: nowrap; overflow-x: auto" class="body">
+  <mat-card *ngFor="let movie of movies; let i = index" class="movie-card">
+    <mat-card-header>{{ movie.Title }}</mat-card-header>
+    <img src="{{ movie.ImagePath }}" alt="{{ movie.Title }}" />
+    <mat-card-actions>
+      <div class="movie-info">
+        <mat-card-subtitle>Director</mat-card-subtitle>
+      </div>
+      <div class="movie-info">
+        <button
+          mat-button
+          color="primary"
+          (click)="getDirector(movie.Director.Name)"
+        >
+          Director
+        </button>
+      </div>
+      <div class="movie-info">
+        <button mat-button color="primary" (click)="getGenre(movie.Genre)">
+          Genre
+        </button>
+        <mat-icon>favorite_border</mat-icon>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

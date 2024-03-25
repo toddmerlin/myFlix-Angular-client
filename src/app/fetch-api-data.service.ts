@@ -60,23 +60,32 @@ export class FetchApiDataService {
   }
 
   // Making the api call for the Get Director endpoint
-  public getDirector(): Observable<any> {
+  public getDirector(directorName: string): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'movies/directors/:Name', {
-      headers: new HttpHeaders({
-        authorization: 'Bearer ' + token,
-      }),
-    });
+    return this.http
+      .get(`${apiUrl}movies/directors/${directorName}`, {
+        headers: new HttpHeaders({
+          authorization: 'Bearer ' + token,
+        }),
+      })
+      .pipe(
+        map((response: any) => {
+          return response;
+        }),
+        catchError(this.handleError)
+      );
   }
 
   // Making the api call for the Get Genre endpoint
-  public getGenre(): Observable<any> {
+  public getGenre(genreName: string): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'movies/genre/:Name', {
-      headers: new HttpHeaders({
-        authorization: 'Bearer ' + token,
-      }),
-    });
+    return this.http
+      .get(apiUrl + 'movies/Genre/${genreName}', {
+        headers: new HttpHeaders({
+          authorization: 'Bearer ' + token,
+        }),
+      })
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
   // Making the api call for the Get User endpoint
