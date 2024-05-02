@@ -1,0 +1,23 @@
+.main-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to bottom, #4e6bff, #ff69b4, white);
+}
+.button-container {
+  font-size: 200px;
+  width: 50%;
+}
+.welcome-button {
+  width: 75%;
+  margin: 15px;
+  padding: 25px;
+  width: 100%;
+}
+
+.h1 {
+  font-size: 50px;
+  color: white;
+}

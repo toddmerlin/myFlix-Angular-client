@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+
+<div class="profile-page">
+  <mat-card class="profile-box">
+    <mat-card-title class="profile-title"
+      >{{ user.Username }}'s Profile</mat-card-title
+    >
+    <mat-card-content>
+      <div class="user-info-container">
+        <div class="username">
+          <h3>Username:</h3>
+          {{ user.Username }}
+        </div>
+        <div class="email">
+          <h3>Email:</h3>
+          <span>{{ user.Email }}</span>
+        </div>
+        <div class="birthday">
+          <h3>Birthday:</h3>
+          <span>{{ user.Birthday | date : "longDate" }}</span>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="button-container">
+      <button
+        mat-raised-button
+        (click)="updateUser()"
+        class="edit-button"
+        color="primary"
+      >
+        Edit Profile
+      </button>
+      <button
+        mat-raised-button
+        (click)="deleteUser()"
+        class="delete-button"
+        color="warn"
+      >
+        Delete Profile
+      </button>
+      <button
+        mat-raised-button
+        (click)="back()"
+        class="back-button"
+        color="accent"
+      >
+        Back
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <!-- Displaying the 'movies' array in the 'movie-card' component -->
+  <mat-card class="favoriteMovies-box">
+    <div>
+      <mat-card-title class="favoriteMovies-title"
+        >Favorite Movies</mat-card-title
+      >
+    </div>
+    <div class="favoriteMovies">
+      <mat-card-actions class="favoriteMovies-buttons">
+        <button
+          class="favoriteMovies-card"
+          (click)="getMovieCard(movie)"
+          *ngFor="let movie of favorites; let i = index"
+        >
+          <img [src]="movie.ImagePath" alt="{{ movie.Title }}" />
+        </button>
+      </mat-card-actions>
+    </div>
+  </mat-card>
+</div>

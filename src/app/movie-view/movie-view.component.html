@@ -1,0 +1,13 @@
+<app-navbar></app-navbar>
+<div class="movie-view">
+  <mat-card *ngFor="let movie of movies; let i = index" class="movie-card">
+    <mat-card-header class="movie-title">
+      {{ movie.Title }}
+    </mat-card-header>
+    <mat-card-actions>
+      <button class="movie-card-image" (click)="getMovieCard(movie)">
+        <img src="{{ movie.ImagePath }}" alt="{{ movie.Title }}" />
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,0 +1,45 @@
+.movie-view {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #ed82b7;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.movie-card {
+  background: #e1649e;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 10px;
+  margin-right: 20px;
+  width: 200px;
+  height: 375px;
+  padding: 5px;
+  overflow: hidden; /* Prevent content from overflowing */
+}
+
+.movie-card img {
+  width: 200px;
+  height: 300px;
+}
+
+.mat-mdc-card-header {
+  justify-content: center !important;
+  align-items: center !important;
+  font-size: large;
+  white-space: wrap; // or 'nowrap'
+  color: aliceblue;
+  line-height: 1;
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: center; /* Centers items horizontally */
+  padding: 10px;
+}
+
+.mdc-card__actions {
+  padding: 0;
+}
