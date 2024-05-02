@@ -19,7 +19,11 @@ export class FetchApiDataService {
   // This will provide HttpClient to the entire class, making it available via this.http
   constructor(private http: HttpClient) {}
 
-  // Making the api call for the user registration endpoint
+  /**
+   * Makes an API call to the users endpoint which enables a new user to register.
+   * @param userDetails The details of the user to be registered.
+   * @returns An Observable that emits the response from the API.
+   */
   public userRegistration(userDetails: any): Observable<any> {
     return this.http.post(apiUrl + 'users', userDetails).pipe(
       catchError((error) => {
@@ -28,7 +32,11 @@ export class FetchApiDataService {
     );
   }
 
-  // Making the api call for the user login endpoint
+  /**
+   * Makes an API call to the users endpoint to facilitate user login.
+   * @param userDetails The details of the user attempting to log in.
+   * @returns An Observable that emits the response from the API.
+   */
   public userLogin(userDetails: any): Observable<any> {
     return this.http.post(apiUrl + 'login', userDetails).pipe(
       catchError((error) => {
@@ -37,7 +45,11 @@ export class FetchApiDataService {
     );
   }
 
-  // Making the api call for the Get All Movies endpoint
+  /**
+   * Makes an API call to retrieve all movie data from the server after a user has logged in.
+   * Requires a bearer token in the header.
+   * @returns An array containing a list of all movies and their associated data from the server
+   */
   public getAllMovies(): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
@@ -49,19 +61,33 @@ export class FetchApiDataService {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  // Making the api call for the Get One Movie only endpoint
+  /**
+   * Makes an API call to retrieve details of a single movie from the server.
+   * @param title The title of the movie to retrieve.
+   * @returns An Observable that emits the response containing data details of the requested movie.
+   */
   public getOneMovie(): Observable<any> {
+    // Retrieve the authentication token from local storage
     const token = localStorage.getItem('token');
-    return this.http
-      .get(apiUrl + 'movies/:Title', {
-        headers: new HttpHeaders({
-          authorization: 'Bearer ' + token,
-        }),
-      })
-      .pipe(map(this.extractResponseData), catchError(this.handleError));
+
+    // Make an HTTP GET request to the movies endpoint with authorization header
+    return (
+      this.http
+        .get(apiUrl + 'movies/:Title', {
+          headers: new HttpHeaders({
+            authorization: 'Bearer ' + token,
+          }),
+        })
+        // Extract and map the response data
+        .pipe(map(this.extractResponseData), catchError(this.handleError))
+    );
   }
 
-  // Making the api call for the Director endpoint
+  /**
+   * Makes an API call to retrieve a list of movies directed by a specific director from the server.
+   * @param director The name of the director whose movies are to be retrieved.
+   * @returns An Observable that emits the response containing details of movies directed by the specified director.
+   */
   public getDirector(director: string): Observable<any> {
     const token = localStorage.getItem('token');
     console.log(director);
@@ -82,16 +108,16 @@ export class FetchApiDataService {
   }
 
   // Making the api call for the Genre endpoint
-  // public getGenre(genreName: string): Observable<any> {
-  //   const token = localStorage.getItem('token');
-  //   return this.http
-  //     .get(apiUrl + `movies/Genre/${genreName}`, {
-  //       headers: new HttpHeaders({
-  //         authorization: 'Bearer ' + token,
-  //       }),
-  //     })
-  //     .pipe(map(this.extractResponseData), catchError(this.handleError));
-  // }
+  public getGenre(genreName: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    return this.http
+      .get(apiUrl + `movies/Genre/${genreName}`, {
+        headers: new HttpHeaders({
+          authorization: 'Bearer ' + token,
+        }),
+      })
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
+  }
 
   // Making the api call for the Get User endpoint
 

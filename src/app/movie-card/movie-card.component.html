@@ -1,17 +1,55 @@
-<div style="display: flex">
-  <mat-card *ngFor="let movie of movies" style="flex: 1 1 auto">
-    <mat-card-header>
-      <mat-card-title>{{ movie.Title }}</mat-card-title>
-      <mat-card-subtitle
-        >Directed by: {{ movie.Director.Name }}</mat-card-subtitle
-      >
-    </mat-card-header>
-    <img src="{{ movie.ImagePath }}" alt="{{ movie.Title }}" />
-    <mat-card-actions>
-      <button mat-button color="primary">Genre</button>
-      <button mat-button color="primary">Director</button>
-      <button mat-button color="primary">Synopsis</button>
-      <mat-icon>favorite_border</mat-icon>
+<mat-card class="movie-card">
+  <div
+    class="movie-background"
+    [style.backgroundImage]="'url(' + movie.ImagePath + ')'"
+  ></div>
+  <div class="movie-info">
+    <mat-card-header class="movie-title">{{ movie.Title }}</mat-card-header>
+
+    <mat-card-actions class="movie-actions">
+      <div class="description">
+        <button
+          mat-button
+          color="primary"
+          (click)="getDescription(movie.Description)"
+        >
+          Description
+        </button>
+      </div>
+
+      <div class="director">
+        <button
+          mat-button
+          color="primary"
+          (click)="getDirector(movie.Director)"
+        >
+          Director
+        </button>
+      </div>
+
+      <div class="genre">
+        <button mat-button color="primary" (click)="getGenre(movie.Genre)">
+          Genre
+        </button>
+      </div>
+
+      <div class="favorite-button">
+        <button
+          mat-icon-button
+          (click)="
+            isFavorite(movie._id)
+              ? deleteFavorite(movie._id)
+              : addFavorite(movie._id)
+          "
+          [ngClass]="
+            isFavorite(movie._id) ? 'mat-flat-button' : 'mat-icon-button'
+          "
+        >
+          <mat-icon
+            >{{ isFavorite(movie._id) ? "favorite" : "favorite_border" }}
+          </mat-icon>
+        </button>
+      </div>
     </mat-card-actions>
-  </mat-card>
-</div>
+  </div>
+</mat-card>
